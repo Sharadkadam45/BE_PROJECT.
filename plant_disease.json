@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Tomato___Bacterial_spot",
+        "cause": "Bacterium Xanthomonas spp.",
+        "cure": "Apply copper-based bactericides and practice crop rotation."
+    },
+    {
+        "name": "Tomato___Early_blight",
+        "cause": "Fungus Alternaria solani.",
+        "cure": "Apply fungicides and remove infected leaves."
+    },
+    {
+        "name": "Tomato___Late_blight",
+        "cause": "Pathogen Phytophthora infestans.",
+        "cure": "Use resistant varieties and fungicides."
+    },
+    {
+        "name": "Tomato___Leaf_Mold",
+        "cause": "Fungus Passalora fulva.",
+        "cure": "Apply fungicides and ensure good ventilation."
+    },
+    {
+        "name": "Tomato___Septoria_leaf_spot",
+        "cause": "Fungus Septoria lycopersici.",
+        "cure": "Remove infected leaves and apply fungicides."
+    },
+    {
+        "name": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "cause": "Spider mites Tetranychus urticae.",
+        "cure": "Use miticides or insecticidal soaps."
+    },
+    {
+        "name": "Tomato___Target_Spot",
+        "cause": "Fungus Corynespora cassiicola.",
+        "cure": "Apply fungicides and ensure good air circulation."
+    },
+    {
+        "name": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "cause": "Virus spread by whiteflies.",
+        "cure": "Control whitefly population and use resistant varieties."
+    },
+    {
+        "name": "Tomato___Tomato_mosaic_virus",
+        "cause": "Virus transmitted through contact and contaminated tools.",
+        "cure": "Remove infected plants and sterilize tools."
+    },
+    {
+        "name": "Tomato___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health."
+    }
+]

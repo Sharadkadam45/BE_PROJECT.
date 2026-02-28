@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TomatoVision | Disease Detection</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#e8f5e9,#f1f8e9);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+h1{
+    text-align:center;
+    color:#2e7d32;
+    margin-bottom:25px;
+    font-size:28px;
+}
+
+form{
+    width:100%;
+}
+
+/* Upload Area */
+.upload-area{
+    border:2px dashed #2e7d32;
+    border-radius:16px;
+    padding:30px 20px;
+    cursor:pointer;
+    background:#f9fff9;
+    transition:0.3s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    width:100%;
+}
+
+.upload-area:hover{
+    background:#e8f5e9;
+}
+
+.upload-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+}
+
+.upload-content i{
+    font-size:42px;
+    color:#2e7d32;
+}
+
+.upload-content span{
+    font-size:16px;
+    font-weight:500;
+    color:#444;
+    line-height:1.4;
+}
+
+input[type="file"]{
+    display:none;
+}
+
+/* Image Preview */
+#preview{
+    width:100%;
+    margin-top:15px;
+    border-radius:12px;
+    display:none;
+}
+
+/* Button */
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#2e7d32;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1b5e20;
+}
+
+/* Loader */
+.loader{
+    display:none;
+    text-align:center;
+    margin-top:15px;
+}
+
+.spinner{
+    width:40px;
+    height:40px;
+    border:4px solid #c8e6c9;
+    border-top:4px solid #2e7d32;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:auto;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* Result Card */
+.result-card{
+    margin-top:25px;
+    background:#e8f5e9;
+    padding:20px;
+    border-radius:16px;
+    animation:fadeIn 0.6s ease;
+}
+
+.result-card img{
+    width:100%;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(15px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Responsive */
+@media(max-width:480px){
+    .card{
+        padding:20px;
+    }
+    h1{
+        font-size:22px;
+    }
+    button{
+        padding:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h1><i class="fas fa-leaf"></i> TomatoVision</h1>
+
+<form action="/upload/" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+
+<label class="upload-area">
+    <div class="upload-content">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>Click to Upload Tomato Leaf Image</span>
+    </div>
+    <input type="file" name="img" accept="image/png, image/jpeg" required onchange="previewImage(event)">
+</label>
+
+<img id="preview">
+
+<button type="submit">
+    <i class="fas fa-search"></i> Analyze Leaf
+</button>
+
+<div class="loader" id="loader">
+    <div class="spinner"></div>
+    <p>Analyzing Image...</p>
+</div>
+
+</form>
+
+{% if result %}
+<div class="result-card">
+    <img src="{{imagepath}}" alt="Uploaded Image">
+    <h3>{{prediction['name']}}</h3>
+    <p><strong>Cause:</strong> {{prediction['cause']}}</p>
+    <p><strong>Cure:</strong> {{prediction['cure']}}</p>
+</div>
+{% endif %}
+
+</div>
+</div>
+
+<script>
+function previewImage(event){
+    const reader = new FileReader();
+    reader.onload = function(){
+        const preview = document.getElementById('preview');
+        preview.src = reader.result;
+        preview.style.display = "block";
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+function showLoader(){
+    document.getElementById('loader').style.display="block";
+}
+</script>
+
+</body>
+</html>
